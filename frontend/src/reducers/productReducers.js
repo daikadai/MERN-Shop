@@ -1,6 +1,6 @@
 import { PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from "../constants/productConstant";
 
-export const productListReducer = (state = { product: {}}, action) => {
+export const productListReducer = (state = { products: []}, action) => {
   switch(action.type) {
     case PRODUCT_LIST_REQUEST:
       return {
