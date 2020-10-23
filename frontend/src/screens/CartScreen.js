@@ -10,7 +10,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../actions/cartAction";
+import { addToCart, removeFromCart } from "../actions/cartAction";
 import Message from "../components/Message";
 
 const CartScreen = ({ match, location, history }) => {
@@ -30,11 +30,11 @@ const CartScreen = ({ match, location, history }) => {
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
-    console.log("Remove");
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
-    history.push('/login?redirect=shipping')
+    history.push("/login?redirect=shipping");
   };
   return (
     <Row>
@@ -79,9 +79,7 @@ const CartScreen = ({ match, location, history }) => {
                     <Button
                       type="button"
                       variant="light"
-                      onClick={() =>
-                        dispatch(removeFromCartHandler(item.product))
-                      }
+                      onClick={() => removeFromCartHandler(item.product)}
                     >
                       <i className="fas fa-trash"></i>
                     </Button>
@@ -107,8 +105,8 @@ const CartScreen = ({ match, location, history }) => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
-                type='button'
-                className='btn-block'
+                type="button"
+                className="btn-block"
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
