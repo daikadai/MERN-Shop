@@ -25,7 +25,7 @@ const authUser = expressAsyncHandler(async(req,res) => {
 })
 
 // @desc    Get user profile
-// @route   POST /api/users/profile
+// @route   GET /api/users/profile
 // @access  Public
 const getUserProfile = expressAsyncHandler(async (req,res) => {
   const user = await User.findById(req.user._id)
