@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from 'axios'
 import { PayPalButton } from 'react-paypal-button-v2'
-import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
+import { Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getOrderDetails, payOrder } from "../actions/orderAction";
