@@ -17,8 +17,8 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
 
   if (orderItems && orderItems.length === 0) {
     res.status(400);
-    throw new Error("No order items");
-    return;
+    throw new Error("No order items")
+    return
   } else {
     const order = new Order({
       orderItems,
@@ -33,11 +33,8 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
 
      const createdOrder = await order.save();
 
-     console.log(createdOrder)
-
      res.status(201).json(createdOrder)
   }
-  res.json(products);
 });
 
 export { addOrderItems }
