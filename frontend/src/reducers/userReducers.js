@@ -1,6 +1,7 @@
 import {
   USER_DETAIL_FAIL,
   USER_DETAIL_REQUEST,
+  USER_DETAIL_RESET,
   USER_DETAIL_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
@@ -76,6 +77,10 @@ export const userDetailsReducer = (state = { user: {}}, action) => {
         loading: false,
         error: action.payload,
       };
+    case USER_DETAIL_RESET:
+      return {
+        user: {}
+      }
     default:
       return state;
   }
