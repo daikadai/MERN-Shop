@@ -5,13 +5,16 @@ import { useEffect } from "react";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { Button, Col, Row, Table } from "react-bootstrap";
-import { listProducts } from "../actions/productAction";
+import { deleteProduct, listProducts } from "../actions/productAction";
 
 const ProductListScreen = ({ history,match }) => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
+
+  const productDelete = useSelector((state) => state.productDelete);
+  const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -23,13 +26,14 @@ const ProductListScreen = ({ history,match }) => {
       history.push('/login')
     }
     
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
     if(window.confirm('Are you sure')) {
       //DELETE PRODUCTS
+      dispatch(deleteProduct(id))
     }
-  }
+  } 
 
   const createProductHandler = (product) => {}
   return (
@@ -44,6 +48,8 @@ const ProductListScreen = ({ history,match }) => {
           </Button>
         </Col>
       </Row>
+      {loadingDelete && <Loader/>}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
